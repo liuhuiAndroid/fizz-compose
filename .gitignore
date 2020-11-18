@@ -1,0 +1,14 @@
+# Android
+local.properties
+*.keystore
+*.DS_Store
+
+# Gradle
+.gradle
+build
+
+# Intellij
+*.iml
+*.ipr
+*.iws
+.idea
