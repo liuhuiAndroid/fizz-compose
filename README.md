@@ -1,5 +1,3 @@
-Jetpack Compose 官方地址
-https://developer.android.com/jetpack/compose
+https://www.youtube.com/watch?v=qsUHeg-acJU&t=469s
 
-Jetpack Compose 使用入门
-https://developer.android.com/jetpack/compose/documentation
+https://github.com/Kilo-Loco/content/tree/4bf89e847d3e1d42d1717ffe30cc1d9d06e75f72/android
