@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                     onValueChange = { passwordState.value = it },
                     placeholder = { Text("Password") },
                     visualTransformation = PasswordVisualTransformation(),
-                    keyboardType = KeyboardType.Password,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     modifier = modifier
                 )
                 Button(
