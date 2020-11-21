@@ -2,9 +2,7 @@ package com.kiloloco.jetpack_compose_pagination
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.lazy.LazyColumnForIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -15,7 +13,6 @@ import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.ui.tooling.preview.Preview
 import com.kiloloco.jetpack_compose_pagination.ui.JetpackcomposepaginationTheme
 
 class MainActivity : AppCompatActivity() {

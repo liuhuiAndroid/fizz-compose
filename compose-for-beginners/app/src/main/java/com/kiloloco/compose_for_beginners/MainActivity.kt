@@ -3,10 +3,10 @@ package com.kiloloco.compose_for_beginners
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Text
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -33,15 +33,10 @@ class MainActivity : AppCompatActivity() {
             ComposeforbeginnersTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    LoginForm()
+                    BoxLayout()
                 }
             }
         }
-    }
-
-    @Composable
-    fun Greeting(name: String) {
-        Text(text = "Hello $name!")
     }
 
     @Preview(showBackground = true)
@@ -52,27 +47,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Preview(showBackground = true)
+    @Composable
+    fun LoginFormPreview() {
+        LoginForm()
+    }
+
     @Composable
     fun BoxLayout() {
-        Stack(alignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+        Box(alignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
             Box(
-                backgroundColor = Color.Blue,
-                modifier = Modifier.size(200.dp),
-                gravity = Alignment.TopEnd
+                modifier = Modifier.size(200.dp).background(Color.Blue),
+                alignment = Alignment.TopEnd
             ) {
                 Box(
-                    backgroundColor = Color.Cyan,
-                    modifier = Modifier.size(25.dp)
+                    modifier = Modifier.size(25.dp).background(Color.Cyan)
                 )
             }
             Box(
-                backgroundColor = Color.Red,
-                modifier = Modifier.size(100.dp),
-                gravity = Alignment.BottomStart
+                modifier = Modifier.size(100.dp).background(Color.Red),
+                alignment = Alignment.BottomStart
             ) {
                 Box(
-                    backgroundColor = Color.Magenta,
-                    modifier = Modifier.size(25.dp)
+                    modifier = Modifier.size(25.dp).background(Color.Magenta)
                 )
             }
         }
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun LoginForm() {
-        Box(gravity = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+        Box(alignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 val modifier = Modifier.padding(vertical = 4.dp)
 
@@ -115,10 +112,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Preview(showBackground = true)
-    @Composable
-    fun LoginFormPreview() {
-        LoginForm()
-    }
 }
 

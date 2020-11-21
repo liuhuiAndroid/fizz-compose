@@ -1,6 +1,5 @@
 package com.kiloloco.jetpack_compose_pagination
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
