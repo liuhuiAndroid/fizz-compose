@@ -24,13 +24,12 @@ fun BottomSheetLayouts() {
     BottomSheetDrawer()
 }
 
-
 @Composable
-fun BottomSheetDrawer(
-) {
+fun BottomSheetDrawer() {
     var sheetState by remember { mutableStateOf(BottomSheetState(show = true)) }
     var drawerState = rememberBottomDrawerState(BottomDrawerValue.Closed)
 
+    // Navigation drawers provide access to destinations in your app.
     BottomDrawerLayout(
         drawerState = drawerState,
         drawerShape = if (sheetState.rounded) RoundedCornerShape(16.dp) else RectangleShape,
@@ -65,7 +64,7 @@ fun BottomSheetDrawer(
             Text(
                 text = "TODO: NOT WORKING PROPERLY FIX OPEN CLOSE STATES",
                 style = typography.h6,
-                color = MaterialTheme.colors.onError
+                color = MaterialTheme.colors.onSurface.copy(alpha = 0.1f)
             )
             Button(
                 onClick = {

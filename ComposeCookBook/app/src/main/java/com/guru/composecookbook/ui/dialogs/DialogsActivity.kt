@@ -64,7 +64,6 @@ fun DialogScreen(onBack: () -> Unit) {
                         Icon(asset = Icons.Default.ArrowBack)
                     }
                 }
-
             )
         },
         bodyContent = {
@@ -80,7 +79,9 @@ fun DialogsOptionList() {
 
     if (dialogState.showDialog) {
         //if state of show dialog changes to true it shows dialog passing state as false for dismiss
-        showDialog(dialogState.dialogType) { dialogState = dialogState.copy(showDialog = false) }
+        showDialog(dialogState.dialogType) {
+            dialogState = dialogState.copy(showDialog = false)
+        }
     }
 
     // I am not sure why updating the `dialogState.showDialog = true` is not working. May be I am
