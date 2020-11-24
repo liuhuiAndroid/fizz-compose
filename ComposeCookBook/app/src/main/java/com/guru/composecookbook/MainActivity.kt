@@ -76,7 +76,6 @@ fun HomeScreenContent(
                     BottomNavType.ANIMATION -> AnimationScreen()
                     BottomNavType.DEMOUI -> DemoUIList()
                     BottomNavType.PROFILE -> ProfileScreen()
-
                 }
             }
         }

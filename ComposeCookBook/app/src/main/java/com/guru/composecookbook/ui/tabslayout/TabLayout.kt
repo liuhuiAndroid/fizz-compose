@@ -36,13 +36,7 @@ private enum class DemoTabs(val value: String) {
 fun TabLayout() {
     val tabsName = remember { DemoTabs.values().map { it.value } }
     var selectedIndex = remember { mutableStateOf(DemoTabs.APPLE.ordinal) }
-    val icons = listOf(Icons.Default.Info, Icons.Default.Person, Icons.Default.ShoppingCart)
-
     Column {
-        // Right now Tabs by default don't have changing like viewpager but I think we can handle
-        // by overriding right/left swipe on content and updating state of selectedTab or using pager
-
-        //Use ScrollableTabRow for list of tabs
         TabRow(selectedTabIndex = selectedIndex.value) {
             tabsName.forEachIndexed { index, title ->
                 Tab(
@@ -87,7 +81,7 @@ fun ScrollableListOfTabs() {
     ScrollableColumn {
         ScrollableTabRow(
             selectedTabIndex = selectedIndex.value,
-            divider = emptyContent(), /* Disable the built-in divider */
+            divider = emptyContent(),
             edgePadding = 16.dp,
             indicator = noIndicator,
             backgroundColor = Color.Transparent,
