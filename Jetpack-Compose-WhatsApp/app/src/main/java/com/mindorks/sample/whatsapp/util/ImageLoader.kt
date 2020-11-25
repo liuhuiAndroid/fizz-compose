@@ -28,7 +28,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun ImageLoader(
     model: Any,
@@ -174,13 +173,10 @@ fun DrawableLoader(
             }
         }
     }
-
-
 }
 
 @Composable
 fun ImageLoader(@DrawableRes imageUrl: Int, modifier: Modifier) {
-
     val vectorAsset = loadVectorResource(imageUrl)
     vectorAsset.resource.resource?.let {
         Image(
@@ -192,7 +188,6 @@ fun ImageLoader(@DrawableRes imageUrl: Int, modifier: Modifier) {
 }
 @Composable
 fun ImageLoader(@DrawableRes imageUrl: Int,modifier: Modifier,onClick:()->Unit) {
-
     val vectorAsset = loadVectorResource(imageUrl)
     vectorAsset.resource.resource?.let {
         Image(
@@ -203,5 +198,4 @@ fun ImageLoader(@DrawableRes imageUrl: Int,modifier: Modifier,onClick:()->Unit) 
             contentScale = ContentScale.Fit
         )
     }
-
 }

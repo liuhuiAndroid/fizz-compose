@@ -1,13 +1,14 @@
 package com.mindorks.sample.whatsapp.screen.main.view.call
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.ContentGravity
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawShadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -24,8 +25,7 @@ fun CallItem(call: Call) {
 
     Column(Modifier.padding(padding).fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-
-            Box(shape = CircleShape, modifier = Modifier.size(40.dp)) {
+            Box(modifier = Modifier.clip(CircleShape).size(40.dp)) {
                 ImageLoader(call.imageUrl)
             }
             Column(modifier = Modifier.padding(start = padding)) {
@@ -41,7 +41,7 @@ fun CallItem(call: Call) {
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            Box(modifier = Modifier.fillMaxWidth(), gravity = ContentGravity.CenterEnd) {
+            Box(modifier = Modifier.fillMaxWidth(), alignment = Alignment.CenterEnd) {
                 ImageLoader(call.voiceStatus, modifier = Modifier)
             }
         }

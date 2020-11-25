@@ -20,10 +20,8 @@ class ChatFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val userName = arguments?.getString("userName") ?: ""
         val userImage = arguments?.getString("userImage") ?: ""
-
         return ComposeView(requireContext()).apply {
             setContent {
                 WhatsAppTheme {

@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.Surface
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -37,7 +38,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return ComposeView(requireContext()).apply {
-
             setContent {
                 WhatsAppTheme {
                     onScreenSelected {
@@ -50,33 +50,35 @@ class MainFragment : Fragment() {
 
     @Composable
     private fun onScreenSelected(onNavigate: (ScreenState.Screen) -> Unit) {
-
         val screenState: State<ScreenState?> =
             viewModel.screenState.observeAsState(viewModel.screenState.value)
-
-        Column {
-            TopAppBar(
-                title = { Text(getString(R.string.whatsapp), color = Color.White) },
-                backgroundColor = colorTopBar(),
-                elevation = 0.dp
-            )
-            screenState.value?.let { TabsPanel(it, onNavigate) }
-            Surface {
-                when (screenState.value?.state) {
-
-                    ScreenState.Screen.CALLS -> CallsView()
-
-                    ScreenState.Screen.CHATS -> ChatsView {
-                        val action = MainFragmentDirections.actionMainFragmentToChatFragment(
-                            it.name,
-                            it.imageUrl
-                        )
-                        findNavController().navigate(action)
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(getString(R.string.whatsapp), color = Color.White) },
+                    backgroundColor = colorTopBar(),
+                    elevation = 0.dp
+                )
+            },
+            bodyContent = {
+                Column {
+                    screenState.value?.let { TabsPanel(it, onNavigate) }
+                    Surface {
+                        when (screenState.value?.state) {
+                            ScreenState.Screen.CALLS -> CallsView()
+                            ScreenState.Screen.CHATS -> ChatsView {
+                                val action =
+                                    MainFragmentDirections.actionMainFragmentToChatFragment(
+                                        it.name,
+                                        it.imageUrl
+                                    )
+                                findNavController().navigate(action)
+                            }
+                            ScreenState.Screen.STATUS -> StatusView()
+                        }
                     }
-
-                    ScreenState.Screen.STATUS -> StatusView()
                 }
             }
-        }
+        )
     }
 }

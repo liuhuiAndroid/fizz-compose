@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
 
     private var _screenState = MutableLiveData(ScreenState(ScreenState.Screen.CHATS))
+
     var screenState: LiveData<ScreenState> = _screenState
 
     fun navigateTo(state: ScreenState.Screen) {

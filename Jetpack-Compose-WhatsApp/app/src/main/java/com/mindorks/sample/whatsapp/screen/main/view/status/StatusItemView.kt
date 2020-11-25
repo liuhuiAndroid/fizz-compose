@@ -1,12 +1,13 @@
 package com.mindorks.sample.whatsapp.screen.main.view.status
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -21,8 +22,7 @@ fun StatusItemView(status: Status) {
     val padding = 16.dp
     Column(Modifier.padding(padding).fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-
-            Box(shape = CircleShape, modifier = Modifier.size(40.dp)) {
+            Box(modifier = Modifier.clip(CircleShape).size(40.dp)) {
                 ImageLoader(status.imageUrl)
             }
             Column(modifier = Modifier.padding(start = 16.dp)) {

@@ -1,8 +1,8 @@
 package com.mindorks.sample.whatsapp.screen.main.view
 
-import androidx.compose.foundation.Text
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -11,9 +11,7 @@ import com.mindorks.sample.whatsapp.util.colorTopBar
 
 data class ScreenState(var state: Screen = Screen.CALLS) {
 
-    enum class Screen(
-        val title: String = "Tab"
-    ) {
+    enum class Screen(val title: String = "Tab") {
         CALLS(title = "Calls"),
         CHATS(title = "Chats"),
         STATUS(title = "Status")
@@ -21,18 +19,13 @@ data class ScreenState(var state: Screen = Screen.CALLS) {
 }
 
 @Composable
-fun TabsPanel(
-    screenState: ScreenState,
-    onNavigate: (ScreenState.Screen) -> Unit,
-) {
+fun TabsPanel(screenState: ScreenState, onNavigate: (ScreenState.Screen) -> Unit) {
     val (selectedTab, setSelectedTab) = remember {
         mutableStateOf(
             ScreenState.Screen.values().indexOf(screenState.state)
         )
     }
-
     val tabs = ScreenState.Screen.values()
-
     TabRow(
         selectedTabIndex = selectedTab,
         backgroundColor = colorTopBar(),

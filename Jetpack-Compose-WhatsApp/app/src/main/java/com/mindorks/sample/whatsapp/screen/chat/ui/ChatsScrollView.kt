@@ -1,13 +1,14 @@
 package com.mindorks.sample.whatsapp.screen.chat.ui
 
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
@@ -35,9 +36,8 @@ fun ChatsScrollView(chat: List<Conversation>) {
 @Composable
 fun setupMyChat(chat: Conversation) {
     Box(
-        backgroundColor = Color(38, 82, 72),
-        modifier = Modifier.fillMaxWidth() + Modifier.padding(80.dp, end = 10.dp),
-        shape = RoundedCornerShape(8.dp)
+        modifier = Modifier.fillMaxWidth().padding(80.dp, end = 10.dp)
+            .background(Color(38, 82, 72)).clip(RoundedCornerShape(8.dp))
     ) {
         Row(modifier = Modifier.padding(all = 10.dp)) {
             Column(modifier = Modifier.weight(3.0f, true)) {
@@ -58,9 +58,8 @@ fun setupMyChat(chat: Conversation) {
 @Composable
 fun setupReceipientChat(chat: Conversation) {
     Box(
-        backgroundColor = Color(62, 61, 64),
-        modifier = Modifier.fillMaxWidth() + Modifier.padding(10.dp, end = 80.dp),
-        shape = RoundedCornerShape(8.dp)
+        modifier = Modifier.fillMaxWidth().padding(10.dp, end = 80.dp)
+            .background(Color(62, 61, 64)).clip(RoundedCornerShape(8.dp))
     ) {
         Row(modifier = Modifier.padding(10.dp)) {
             Column(modifier = Modifier.weight(3.0f, true)) {
