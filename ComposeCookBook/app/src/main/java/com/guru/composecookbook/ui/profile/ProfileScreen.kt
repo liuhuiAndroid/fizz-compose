@@ -44,7 +44,7 @@ const val linkedInUrl = "https://www.linkedin.com/in/gurupreet-singh-491a7668/"
 const val githubUrl = "https://github.com"
 const val githubRepoUrl = "https://github.com/Gurupreet/ComposeCookBook"
 
-//NOTE: This stuff should usually be in a parent activity/Navigator
+// NOTE: This stuff should usually be in a parent activity/Navigator
 // We can pass callback to profileScreen to get the click.
 private fun launchSocialActivity(context: Context, socialType: String) {
     val intent = when (socialType) {

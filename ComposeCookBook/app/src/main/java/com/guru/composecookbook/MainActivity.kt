@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         //for adView demo
         MobileAds.initialize(this)
         setContent {
+            // SystemUiController: 一个帮助类，用于设置窗口的导航和状态栏颜色，根据API级别优雅地降级
             val systemUiController = remember { SystemUiController(window) }
             val appTheme = remember { mutableStateOf(AppThemeState()) }
             BaseView(appTheme.value, systemUiController) {
@@ -68,6 +69,7 @@ fun HomeScreenContent(
     modifier: Modifier
 ) {
     Column(modifier = modifier) {
+        // Crossfade 允许使用 crossfade 动画在两种布局之间切换。
         Crossfade(homeScreen) { screen ->
             Surface(color = MaterialTheme.colors.background) {
                 when (screen) {
@@ -84,7 +86,6 @@ fun HomeScreenContent(
 
 @Composable
 fun MainAppContent(appThemeState: MutableState<AppThemeState>) {
-    //Default home screen state is always HOME
     val homeScreenState = savedInstanceState { BottomNavType.HOME }
     val bottomNavBarContentDescription = stringResource(id = R.string.a11y_bottom_navigation_bar)
 
@@ -133,7 +134,7 @@ fun BottomNavigationContent(
                 RotateIcon(
                     state = animate,
                     asset = Icons.Default.PlayArrow,
-                    angle = 720f,
+                    angle = 360f,
                     duration = 2000
                 )
             },

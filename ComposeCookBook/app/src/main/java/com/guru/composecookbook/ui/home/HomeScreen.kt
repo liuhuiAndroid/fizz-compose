@@ -48,15 +48,13 @@ fun HomeScreen(appThemeState: MutableState<AppThemeState>) {
                         Icon(asset = vectorResource(id = R.drawable.ic_sleep))
                     }
                     IconButton(onClick = { showMenu.value = !showMenu.value }) {
-                        Icon(asset = Icons.Default.Palette)
+                        Icon(asset = Icons.Default.Palette) // 调色板
                     }
                 },
             )
         },
         bodyContent = {
             HomeScreenContent(appThemeState.value.darkTheme, showMenu) { newPalletSelected ->
-                // Events can be and should be passed to as upper layer as possible here
-                // we are just passing to till HomeScreen.
                 appThemeState.value = appThemeState.value.copy(pallet = newPalletSelected)
                 showMenu.value = false
             }
@@ -70,6 +68,7 @@ fun HomeScreenContent(
     showMenu: MutableState<Boolean>,
     onPalletChange: (ColorPallet) -> Unit
 ) {
+    // 提供可供Android应用程序使用的上下文
     val context = ContextAmbient.current
     val list = remember { DemoDataProvider.homeScreenListItems }
     Box(modifier = Modifier.fillMaxSize()) {

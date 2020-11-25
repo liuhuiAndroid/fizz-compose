@@ -46,7 +46,6 @@ import com.guru.composecookbook.ui.demoui.spotify.data.SpotifyDataProvider
 import com.guru.composecookbook.ui.utils.horizontalGradientBackground
 import dev.chrisbanes.accompanist.coil.CoilImage
 
-
 @Composable
 fun CryptoHomeScreen(onCryptoHomeInteractionEvents: (CryptoHomeInteractionEvents) -> Unit) {
     val viewModel: CryptoHomeViewModel = viewModel()

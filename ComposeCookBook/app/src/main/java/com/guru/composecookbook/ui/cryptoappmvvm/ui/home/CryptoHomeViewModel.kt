@@ -17,13 +17,11 @@ import kotlinx.coroutines.launch
 class CryptoHomeViewModel(
     val cryptoRepository: CryptoRepository = DemoDIGraph.cryptoRepository
 ) : ViewModel() {
-    //flow implementation to get all crypto
     private val _viewStateFlow = MutableStateFlow(CryptoHomeUIState(isLoading = true))
     val viewStateFlow: StateFlow<CryptoHomeUIState> = _viewStateFlow
     var page = 1
     var isLoadingMoreItems = false
 
-    //live data to read room database
     val favCryptoLiveData = liveData(Dispatchers.IO) {
         emitSource(cryptoRepository.getFavourite())
     }
@@ -36,9 +34,6 @@ class CryptoHomeViewModel(
 
     private suspend fun getAllCryptos(page: Int) {
         cryptoRepository.getAllCryptos(page).collect { newList ->
-            // Just to show pagination as Api is quite fast
-            delay(1500)
-
             _viewStateFlow.value.cryptos += newList
             _viewStateFlow.value = CryptoHomeUIState(
                 isLoading = false,
