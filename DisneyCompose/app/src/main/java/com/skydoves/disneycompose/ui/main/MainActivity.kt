@@ -28,21 +28,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-  @VisibleForTesting val viewModel: MainViewModel by viewModels()
+    @VisibleForTesting
+    val viewModel: MainViewModel by viewModels()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    // observe toast.
-    viewModel.toast.observe(this) {
-      Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        viewModel.toast.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+
+        setContent {
+            DisneyComposeTheme {
+                DisneyMain(viewModel = viewModel)
+            }
+        }
     }
-
-    // set disney contents.
-    setContent {
-      DisneyComposeTheme {
-        DisneyMain(viewModel = viewModel)
-      }
-    }
-  }
 }

@@ -35,47 +35,47 @@ import com.skydoves.disneycompose.repository.MainRepository
 import timber.log.Timber
 
 class MainViewModel @ViewModelInject constructor(
-  private val mainRepository: MainRepository,
-  private val detailRepository: DetailRepository,
-  val imageLoader: ImageLoader
+        private val mainRepository: MainRepository,
+        private val detailRepository: DetailRepository,
+        val imageLoader: ImageLoader
 ) : LiveCoroutinesViewModel() {
 
-  private var _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
-  val posterList: LiveData<List<Poster>>
+    private var _posterList: MutableLiveData<Boolean> = MutableLiveData(true)
+    val posterList: LiveData<List<Poster>>
 
-  private var _posterDetails: LiveData<Poster> = MutableLiveData()
-  val posterDetails: LiveData<Poster> get() = _posterDetails
+    private var _posterDetails: LiveData<Poster> = MutableLiveData()
+    val posterDetails: LiveData<Poster> get() = _posterDetails
 
-  private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
-  val isLoading: LiveData<Boolean> get() = _isLoading
+    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
-  private val _selectedTab: MutableState<Int> = mutableStateOf(0)
-  val selectedTab: State<Int> get() = _selectedTab
+    private val _selectedTab: MutableState<Int> = mutableStateOf(0)
+    val selectedTab: State<Int> get() = _selectedTab
 
-  private val _toast: MutableLiveData<String> = MutableLiveData()
-  val toast: LiveData<String> get() = _toast
+    private val _toast: MutableLiveData<String> = MutableLiveData()
+    val toast: LiveData<String> get() = _toast
 
-  init {
-    Timber.d("injection MainViewModel")
+    init {
+        Timber.d("injection MainViewModel")
 
-    posterList = _posterList.switchMap {
-      _isLoading.postValue(true)
-      launchOnViewModelScope {
-        this.mainRepository.loadDisneyPosters(
-          onSuccess = { _isLoading.postValue(false) },
-          onError = { _toast.postValue(it) }
-        ).asLiveData()
-      }
+        posterList = _posterList.switchMap {
+            _isLoading.postValue(true)
+            launchOnViewModelScope {
+                this.mainRepository.loadDisneyPosters(
+                        onSuccess = { _isLoading.postValue(false) },
+                        onError = { _toast.postValue(it) }
+                ).asLiveData()
+            }
+        }
     }
-  }
 
-  @WorkerThread
-  fun getPoster(id: Long) {
-    _posterDetails = detailRepository.getPosterById(id)
-  }
+    @WorkerThread
+    fun getPoster(id: Long) {
+        _posterDetails = detailRepository.getPosterById(id)
+    }
 
-  @MainThread
-  fun selectTab(@StringRes tab: Int) {
-    _selectedTab.value = tab
-  }
+    @MainThread
+    fun selectTab(@StringRes tab: Int) {
+        _selectedTab.value = tab
+    }
 }
