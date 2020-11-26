@@ -13,9 +13,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.ripple.RippleIndication
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
+import com.github.skydoves.landscapistdemo.R
 import com.github.skydoves.landscapistdemo.model.MockUtil
 import com.github.skydoves.landscapistdemo.model.Poster
 import com.github.skydoves.landscapistdemo.theme.DisneyComposeTheme
@@ -26,10 +28,7 @@ import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun DisneyPosters(
-        posters: List<Poster>,
-        modifier: Modifier = Modifier
-) {
+fun DisneyPosters(posters: List<Poster>, modifier: Modifier = Modifier) {
     ScrollableColumn(
             modifier = modifier
                     .background(MaterialTheme.colors.background)
@@ -46,10 +45,7 @@ fun DisneyPosters(
 }
 
 @Composable
-fun HomePoster(
-        poster: Poster,
-        modifier: Modifier = Modifier
-) {
+fun HomePoster(poster: Poster, modifier: Modifier = Modifier) {
     Surface(
             modifier = modifier.padding(4.dp),
             color = MaterialTheme.colors.onBackground,
@@ -74,7 +70,8 @@ fun HomePoster(
                     shimmerParams = ShimmerParams(
                             baseColor = background800,
                             highlightColor = shimmerHighLight
-                    )
+                    ),
+                    error = imageResource(R.drawable.disney_logo)
             )
             Text(
                     text = poster.name,

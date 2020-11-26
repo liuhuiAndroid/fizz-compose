@@ -7,15 +7,9 @@ import androidx.compose.ui.unit.Dp
 import kotlin.math.ceil
 
 @Composable
-fun StaggeredVerticalGrid(
-        modifier: Modifier = Modifier,
-        maxColumnWidth: Dp,
-        children: @Composable () -> Unit
-) {
-    Layout(
-            children = children,
-            modifier = modifier
-    ) { measurables, constraints ->
+fun StaggeredVerticalGrid(modifier: Modifier = Modifier, maxColumnWidth: Dp,
+                          children: @Composable () -> Unit) {
+    Layout(children = children, modifier = modifier) { measurables, constraints ->
         check(constraints.hasBoundedWidth) {
             "Unbounded width not supported"
         }
@@ -29,13 +23,9 @@ fun StaggeredVerticalGrid(
             colHeights[column] += placeable.height
             placeable
         }
-
         val height = colHeights.maxOrNull()?.coerceIn(constraints.minHeight, constraints.maxHeight)
                 ?: constraints.minHeight
-        layout(
-                width = constraints.maxWidth,
-                height = height
-        ) {
+        layout(width = constraints.maxWidth, height = height) {
             val colY = IntArray(columns) { 0 }
             placeables.forEach { placeable ->
                 val column = shortestColumn(colY)
