@@ -1,0 +1,6 @@
+rootProject.name = "LandscapistDemo"
+include ':app'
+include ':fresco'
+include ':landscapist'
+include ':glide'
+include ':coil'
