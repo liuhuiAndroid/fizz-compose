@@ -1,27 +1,27 @@
 buildscript {
-  apply from: './dependencies.gradle'
-  repositories {
-    google()
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
-  }
-  dependencies {
-    classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-    classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
-    classpath "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokkaGradle"
-    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$versions.bintrayPlugin"
-  }
+    apply from: './dependencies.gradle'
+    repositories {
+        google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokkaGradle"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$versions.bintrayPlugin"
+    }
 }
 
 allprojects {
-  repositories {
-    google()
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
-  }
+    repositories {
+        google()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    }
 }
 
 task clean(type: Delete) {
-  delete rootProject.buildDir
+    delete rootProject.buildDir
 }
