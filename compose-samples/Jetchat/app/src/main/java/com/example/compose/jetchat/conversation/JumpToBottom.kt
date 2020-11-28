@@ -59,7 +59,6 @@ fun JumpToBottom(
     onClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // Show Jump to Bottom button
     val transition = transition(
         definition = definition,
         toState = if (enabled) Visibility.VISIBLE else Visibility.GONE

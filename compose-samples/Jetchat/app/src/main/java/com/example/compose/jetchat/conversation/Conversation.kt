@@ -1,21 +1,6 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.compose.jetchat.conversation
 
+import android.util.Log
 import androidx.compose.foundation.ClickableText
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
@@ -81,10 +66,10 @@ import com.example.compose.jetchat.theme.elevatedSurface
  */
 @Composable
 fun ConversationContent(
-    uiState: ConversationUiState,
-    navigateToProfile: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    onNavIconPressed: () -> Unit = { }
+        uiState: ConversationUiState,
+        navigateToProfile: (String) -> Unit,
+        modifier: Modifier = Modifier,
+        onNavIconPressed: () -> Unit = { }
 ) {
     val authorMe = stringResource(R.string.author_me)
     val timeNow = stringResource(id = R.string.now)
@@ -94,25 +79,25 @@ fun ConversationContent(
         Box(modifier = Modifier.fillMaxSize()) {
             Column(Modifier.fillMaxSize()) {
                 Messages(
-                    messages = uiState.messages,
-                    navigateToProfile = navigateToProfile,
-                    modifier = Modifier.weight(1f),
-                    scrollState = scrollState
+                        messages = uiState.messages,
+                        navigateToProfile = navigateToProfile,
+                        modifier = Modifier.weight(1f),
+                        scrollState = scrollState
                 )
                 UserInput(
-                    onMessageSent = { content ->
-                        uiState.addMessage(
-                            Message(authorMe, content, timeNow)
-                        )
-                    },
-                    scrollState
+                        onMessageSent = { content ->
+                            uiState.addMessage(
+                                    Message(authorMe, content, timeNow)
+                            )
+                        },
+                        scrollState
                 )
             }
             // Channel name bar floats above the messages
             ChannelNameBar(
-                channelName = uiState.channelName,
-                channelMembers = uiState.channelMembers,
-                onNavIconPressed = onNavIconPressed
+                    channelName = uiState.channelName,
+                    channelMembers = uiState.channelMembers,
+                    onNavIconPressed = onNavIconPressed
             )
         }
     }
@@ -120,54 +105,50 @@ fun ConversationContent(
 
 @Composable
 fun ChannelNameBar(
-    channelName: String,
-    channelMembers: Int,
-    modifier: Modifier = Modifier,
-    onNavIconPressed: () -> Unit = { }
+        channelName: String,
+        channelMembers: Int,
+        modifier: Modifier = Modifier,
+        onNavIconPressed: () -> Unit = { }
 ) {
     JetchatAppBar(
-        modifier = modifier,
-        onNavIconPressed = onNavIconPressed,
-        title = {
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                // Channel name
-                Text(
-                    text = channelName,
-                    style = MaterialTheme.typography.subtitle1
-                )
-                // Number of members
-                Providers(AmbientContentAlpha provides ContentAlpha.medium) {
+            modifier = modifier,
+            onNavIconPressed = onNavIconPressed,
+            title = {
+                Column(
+                        modifier = Modifier.weight(1f),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
-                        text = stringResource(R.string.members, channelMembers),
-                        style = MaterialTheme.typography.caption,
-                        color = MaterialTheme.colors.onSurface
+                            text = channelName,
+                            style = MaterialTheme.typography.subtitle1
+                    )
+                    Providers(AmbientContentAlpha provides ContentAlpha.medium) {
+                        Text(
+                                text = stringResource(R.string.members, channelMembers),
+                                style = MaterialTheme.typography.caption,
+                                color = MaterialTheme.colors.onSurface
+                        )
+                    }
+                }
+            },
+            actions = {
+                Providers(AmbientContentAlpha provides ContentAlpha.medium) {
+                    Icon(
+                            asset = Icons.Outlined.Search,
+                            modifier = Modifier
+                                    .clickable(onClick = {})
+                                    .padding(horizontal = 12.dp, vertical = 16.dp)
+                                    .preferredHeight(24.dp)
+                    )
+                    Icon(
+                            asset = Icons.Outlined.Info,
+                            modifier = Modifier
+                                    .clickable(onClick = {})
+                                    .padding(horizontal = 12.dp, vertical = 16.dp)
+                                    .preferredHeight(24.dp)
                     )
                 }
             }
-        },
-        actions = {
-            Providers(AmbientContentAlpha provides ContentAlpha.medium) {
-                // Search icon
-                Icon(
-                    asset = Icons.Outlined.Search,
-                    modifier = Modifier
-                        .clickable(onClick = {}) // TODO: Show not implemented dialog.
-                        .padding(horizontal = 12.dp, vertical = 16.dp)
-                        .preferredHeight(24.dp)
-                )
-                // Info icon
-                Icon(
-                    asset = Icons.Outlined.Info,
-                    modifier = Modifier
-                        .clickable(onClick = {}) // TODO: Show not implemented dialog.
-                        .padding(horizontal = 12.dp, vertical = 16.dp)
-                        .preferredHeight(24.dp)
-                )
-            }
-        }
     )
 }
 
@@ -175,19 +156,18 @@ const val ConversationTestTag = "ConversationTestTag"
 
 @Composable
 fun Messages(
-    messages: List<Message>,
-    navigateToProfile: (String) -> Unit,
-    scrollState: ScrollState,
-    modifier: Modifier = Modifier
+        messages: List<Message>,
+        navigateToProfile: (String) -> Unit,
+        scrollState: ScrollState,
+        modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
-
         ScrollableColumn(
-            scrollState = scrollState,
-            reverseScrollDirection = true,
-            modifier = Modifier
-                .testTag(ConversationTestTag)
-                .fillMaxWidth()
+                scrollState = scrollState,
+                reverseScrollDirection = true,
+                modifier = Modifier
+                        .testTag(ConversationTestTag)
+                        .fillMaxWidth()
         ) {
             val authorMe = stringResource(id = R.string.author_me)
             Spacer(modifier = Modifier.preferredHeight(64.dp))
@@ -196,8 +176,6 @@ fun Messages(
                 val nextAuthor = messages.getOrNull(index + 1)?.author
                 val isFirstMessageByAuthor = prevAuthor != content.author
                 val isLastMessageByAuthor = nextAuthor != content.author
-
-                // Hardcode day dividers for simplicity
                 if (index == 0) {
                     DayHeader("20 Aug")
                 } else if (index == 4) {
@@ -205,45 +183,42 @@ fun Messages(
                 }
 
                 Message(
-                    onAuthorClick = {
-                        navigateToProfile(content.author)
-                    },
-                    msg = content,
-                    isUserMe = content.author == authorMe,
-                    isFirstMessageByAuthor = isFirstMessageByAuthor,
-                    isLastMessageByAuthor = isLastMessageByAuthor
+                        onAuthorClick = {
+                            navigateToProfile(content.author)
+                        },
+                        msg = content,
+                        isUserMe = content.author == authorMe,
+                        isFirstMessageByAuthor = isFirstMessageByAuthor,
+                        isLastMessageByAuthor = isLastMessageByAuthor
                 )
             }
         }
         // Jump to bottom button shows up when user scrolls past a threshold.
-        // Convert to pixels:
         val jumpThreshold = with(DensityAmbient.current) {
             JumpToBottomThreshold.toPx()
         }
 
-        // Apply the threshold:
         val jumpToBottomButtonEnabled = scrollState.value > jumpThreshold
+        Log.i("Fizz", "scrollState.value = ${scrollState.value}")
 
         JumpToBottom(
-            // Only show if the scroller is not at the bottom
-            enabled = jumpToBottomButtonEnabled,
-            onClicked = {
-                scrollState.smoothScrollTo(BottomScrollState)
-            },
-            modifier = Modifier.align(Alignment.BottomCenter)
+                enabled = jumpToBottomButtonEnabled,
+                onClicked = {
+                    scrollState.smoothScrollTo(BottomScrollState)
+                },
+                modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
 }
 
 @Composable
 fun Message(
-    onAuthorClick: () -> Unit,
-    msg: Message,
-    isUserMe: Boolean,
-    isFirstMessageByAuthor: Boolean,
-    isLastMessageByAuthor: Boolean
+        onAuthorClick: () -> Unit,
+        msg: Message,
+        isUserMe: Boolean,
+        isFirstMessageByAuthor: Boolean,
+        isLastMessageByAuthor: Boolean
 ) {
-    // TODO: get image from msg.author
     val image = if (isUserMe) {
         imageResource(id = R.drawable.ali)
     } else {
@@ -258,40 +233,38 @@ fun Message(
     val spaceBetweenAuthors = if (isFirstMessageByAuthor) Modifier.padding(top = 8.dp) else Modifier
     Row(modifier = spaceBetweenAuthors) {
         if (isFirstMessageByAuthor) {
-            // Avatar
             Image(
-                modifier = Modifier
-                    .clickable(onClick = onAuthorClick)
-                    .padding(horizontal = 16.dp)
-                    .preferredSize(42.dp)
-                    .border(1.5.dp, borderColor, CircleShape)
-                    .border(3.dp, MaterialTheme.colors.surface, CircleShape)
-                    .clip(CircleShape)
-                    .align(Alignment.Top),
-                asset = image,
-                contentScale = ContentScale.Crop
+                    modifier = Modifier
+                            .clickable(onClick = onAuthorClick)
+                            .padding(horizontal = 16.dp)
+                            .preferredSize(42.dp)
+                            .border(1.5.dp, borderColor, CircleShape)
+                            .border(3.dp, MaterialTheme.colors.surface, CircleShape)
+                            .clip(CircleShape)
+                            .align(Alignment.Top),
+                    asset = image,
+                    contentScale = ContentScale.Crop
             )
         } else {
-            // Space under avatar
             Spacer(modifier = Modifier.preferredWidth(74.dp))
         }
         AuthorAndTextMessage(
-            msg = msg,
-            isFirstMessageByAuthor = isFirstMessageByAuthor,
-            isLastMessageByAuthor = isLastMessageByAuthor,
-            modifier = Modifier
-                .padding(end = 16.dp)
-                .weight(1f)
+                msg = msg,
+                isFirstMessageByAuthor = isFirstMessageByAuthor,
+                isLastMessageByAuthor = isLastMessageByAuthor,
+                modifier = Modifier
+                        .padding(end = 16.dp)
+                        .weight(1f)
         )
     }
 }
 
 @Composable
 fun AuthorAndTextMessage(
-    msg: Message,
-    isFirstMessageByAuthor: Boolean,
-    isLastMessageByAuthor: Boolean,
-    modifier: Modifier = Modifier
+        msg: Message,
+        isFirstMessageByAuthor: Boolean,
+        isLastMessageByAuthor: Boolean,
+        modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         if (isFirstMessageByAuthor) {
@@ -299,10 +272,8 @@ fun AuthorAndTextMessage(
         }
         ChatItemBubble(msg, isLastMessageByAuthor)
         if (isLastMessageByAuthor) {
-            // Last bubble before next author
             Spacer(modifier = Modifier.preferredHeight(8.dp))
         } else {
-            // Between bubbles
             Spacer(modifier = Modifier.preferredHeight(4.dp))
         }
     }
@@ -313,18 +284,18 @@ private fun AuthorNameTimestamp(msg: Message) {
     // Combine author and timestamp for a11y.
     Row(modifier = Modifier.semantics(mergeAllDescendants = true) {}) {
         Text(
-            text = msg.author,
-            style = MaterialTheme.typography.subtitle1,
-            modifier = Modifier
-                .alignBy(LastBaseline)
-                .paddingFrom(LastBaseline, after = 8.dp) // Space to 1st bubble
+                text = msg.author,
+                style = MaterialTheme.typography.subtitle1,
+                modifier = Modifier
+                        .alignBy(LastBaseline)
+                        .paddingFrom(LastBaseline, after = 8.dp) // Space to 1st bubble
         )
         Spacer(modifier = Modifier.preferredWidth(8.dp))
         Providers(AmbientContentAlpha provides ContentAlpha.medium) {
             Text(
-                text = msg.timestamp,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.alignBy(LastBaseline)
+                    text = msg.timestamp,
+                    style = MaterialTheme.typography.caption,
+                    modifier = Modifier.alignBy(LastBaseline)
             )
         }
     }
@@ -339,9 +310,9 @@ fun DayHeader(dayString: String) {
         DayHeaderLine()
         Providers(AmbientContentAlpha provides ContentAlpha.medium) {
             Text(
-                text = dayString,
-                modifier = Modifier.padding(horizontal = 16.dp),
-                style = MaterialTheme.typography.overline
+                    text = dayString,
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    style = MaterialTheme.typography.overline
             )
         }
         DayHeaderLine()
@@ -351,39 +322,36 @@ fun DayHeader(dayString: String) {
 @Composable
 private fun RowScope.DayHeaderLine() {
     Divider(
-        modifier = Modifier.weight(1f).align(Alignment.CenterVertically),
-        color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f)
+            modifier = Modifier.weight(1f).align(Alignment.CenterVertically),
+            color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f)
     )
 }
 
 @Composable
 fun ChatItemBubble(
-    message: Message,
-    lastMessageByAuthor: Boolean
+        message: Message,
+        lastMessageByAuthor: Boolean
 ) {
-
     val backgroundBubbleColor =
-        if (MaterialTheme.colors.isLight) {
-            Color(0xFFF5F5F5)
-        } else {
-            MaterialTheme.colors.elevatedSurface(2.dp)
-        }
-
+            if (MaterialTheme.colors.isLight) {
+                Color(0xFFF5F5F5)
+            } else {
+                MaterialTheme.colors.elevatedSurface(2.dp)
+            }
     val bubbleShape = if (lastMessageByAuthor) LastChatBubbleShape else ChatBubbleShape
     Column {
         Surface(color = backgroundBubbleColor, shape = bubbleShape) {
             ClickableMessage(
-                message = message
+                    message = message
             )
         }
-
         message.image?.let {
             Spacer(modifier = Modifier.height(4.dp))
             Surface(color = backgroundBubbleColor, shape = bubbleShape) {
                 Image(
-                    asset = imageResource(it),
-                    contentScale = ContentScale.Fit,
-                    modifier = Modifier.preferredSize(160.dp)
+                        asset = imageResource(it),
+                        contentScale = ContentScale.Fit,
+                        modifier = Modifier.preferredSize(160.dp)
                 )
             }
         }
@@ -397,22 +365,20 @@ fun ClickableMessage(message: Message) {
     val styledMessage = messageFormatter(text = message.content)
 
     ClickableText(
-        text = styledMessage,
-        style = MaterialTheme.typography.body1.copy(color = AmbientContentColor.current),
-        modifier = Modifier.padding(8.dp),
-        onClick = {
-            styledMessage
-                .getStringAnnotations(start = it, end = it)
-                .firstOrNull()
-                ?.let { annotation ->
-                    when (annotation.tag) {
-                        SymbolAnnotationType.LINK.name -> uriHandler.openUri(annotation.item)
-                        // TODO(yrezgui): Open profile screen when click PERSON tag
-                        //  (e.g. @aliconors)
-                        else -> Unit
-                    }
-                }
-        }
+            text = styledMessage,
+            style = MaterialTheme.typography.body1.copy(color = AmbientContentColor.current),
+            modifier = Modifier.padding(8.dp),
+            onClick = {
+                styledMessage
+                        .getStringAnnotations(start = it, end = it)
+                        .firstOrNull()
+                        ?.let { annotation ->
+                            when (annotation.tag) {
+                                SymbolAnnotationType.LINK.name -> uriHandler.openUri(annotation.item)
+                                else -> Unit
+                            }
+                        }
+            }
     )
 }
 
@@ -421,8 +387,8 @@ fun ClickableMessage(message: Message) {
 fun ConversationPreview() {
     JetchatTheme {
         ConversationContent(
-            uiState = exampleUiState,
-            navigateToProfile = { }
+                uiState = exampleUiState,
+                navigateToProfile = { }
         )
     }
 }
