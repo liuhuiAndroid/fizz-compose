@@ -11,9 +11,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 
-/**
- * Main activity for the app. Shows a drawer and a toolbar rendered with traditional Views, for now.
- */
 class NavActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
