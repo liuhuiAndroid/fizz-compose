@@ -111,12 +111,28 @@ private fun FizzTheme(
     ) {
         MaterialTheme(
             colors = colors,
-            typography = typography,
+            typography = fizzTypography,
             shapes = shapes,
             content = content
         )
     }
 }
+
+val fizzColors = lightColors(
+    primary = fizz_purple_800,
+    secondary = fizz_red,
+    surface = fizz_purple_900,
+    onSurface = fizz_white,
+    primaryVariant = fizz_purple_700
+)
+
+@Composable
+fun FizzTheme(children: @Composable () -> Unit) {
+    MaterialTheme(colors = fizzColors, typography = fizzTypography) {
+        children()
+    }
+}
+
 
 /**
  * Alternate to [MaterialTheme] allowing us to add our own theme systems (e.g. [Elevations]) or to

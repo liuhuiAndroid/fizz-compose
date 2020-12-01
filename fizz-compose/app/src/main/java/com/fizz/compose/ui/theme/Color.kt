@@ -28,3 +28,12 @@ val pinkDarkPrimary = Color(0xff24191c)
 fun Colors.compositedOnSurface(alpha: Float): Color {
     return onSurface.copy(alpha = alpha).compositeOver(surface)
 }
+
+
+val fizz_caption = Color.DarkGray
+val fizz_divider_color = Color.LightGray
+val fizz_red = Color(0xFFE30425)
+val fizz_white = Color.White
+val fizz_purple_700 = Color(0xFF720D5D)
+val fizz_purple_800 = Color(0xFF5D1049)
+val fizz_purple_900 = Color(0xFF4E0D3A)

@@ -19,7 +19,7 @@ private val fonts = fontFamily(
         font(R.font.rubik_bold, FontWeight.Bold)
 )
 
-val typography = typographyFromDefaults(
+val fizzTypography = typographyFromDefaults(
         h1 = TextStyle(
                 fontFamily = fonts,
                 fontWeight = FontWeight.Bold
