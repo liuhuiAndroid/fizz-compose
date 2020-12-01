@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">fizz-compose</string>
+
+    <!-- Main -->
+    <string name="main_home">首页</string>
+    <string name="main_find_house">找房</string>
+    <string name="main_recommend">推荐</string>
+    <string name="main_message">消息</string>
+    <string name="main_profile">我的</string>
+
+</resources>
