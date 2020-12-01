@@ -58,7 +58,7 @@ fun FizzTheme(
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) DarkColorPalette else LightColorPalette
-
+    // 实际上是：val systemUiController = remember { SystemUiController(window) }
     val sysUiController = SysUiController.current
     onCommit(sysUiController, colors.uiBackground) {
         sysUiController.setSystemBarsColor(

@@ -36,6 +36,7 @@ fun SystemUiController(window: Window): SystemUiController {
 /**
  * A helper class for setting the navigation and status bar colors for a [Window], gracefully
  * degrading behavior based upon API level.
+ * 一个帮助程序类，用于设置[Window]的导航和状态栏颜色，并根据API级别适当地降低行为。
  */
 private class SystemUiControllerImpl(private val window: Window) : SystemUiController {
 
@@ -127,6 +128,7 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUiContr
 /**
  * An [androidx.compose.runtime.Ambient] holding the current [SysUiController]. Defaults to a
  * no-op controller; consumers should [provide][androidx.compose.runtime.Providers] a real one.
+ * 保持当前[SysUiController]的[Ambient]。 默认为无操作控制器； 消费者应该提供 [Providers]真实的
  */
 val SysUiController = staticAmbientOf<SystemUiController> {
     FakeSystemUiController
@@ -139,6 +141,7 @@ private val BlackScrimmed: (Color) -> Color = { original ->
 
 /**
  * A fake implementation, useful as a default or used in Previews.
+ * 伪造的实现，默认使用或在预览中使用。
  */
 private object FakeSystemUiController : SystemUiController {
     override fun setStatusBarColor(

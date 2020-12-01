@@ -28,6 +28,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val systemUiController = remember { SystemUiController(window) }
+            // [Providers] binds values to [ProvidableAmbient] keys. Reading the ambient using [Ambient.current]
+            // will return the value provided in [Providers]'s [values] parameter for all composable
+            // functions called directly or indirectly in the [children] lambda.
+            // [提供者]将值绑定到[ProvidableAmbient]键。 使用[Ambient.current]读取环境将返回[Providers]的[values]
+            // 参数中为在[children] lambda中直接或间接调用的所有可组合函数提供的值。
             Providers(SysUiController provides systemUiController) {
                 // Insets for Jetpack Compose
                 ProvideWindowInsets {
