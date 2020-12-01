@@ -2,6 +2,7 @@ package com.fizz.compose.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedDispatcher
 import androidx.compose.animation.core.*
 import androidx.compose.animation.transition
 import androidx.compose.foundation.layout.Box
@@ -10,8 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawOpacity
 import androidx.compose.ui.platform.setContent
 import androidx.core.view.WindowCompat
-import com.fizz.compose.base.FizzScaffold
+import com.fizz.compose.ui.components.JetsnackSurface
 import com.fizz.compose.ui.main.MainContent
+import com.fizz.compose.ui.theme.FizzTheme
+import com.fizz.compose.ui.utils.SysUiController
+import com.fizz.compose.ui.utils.SystemUiController
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : ComponentActivity() {
@@ -23,27 +27,32 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            // Insets for Jetpack Compose
-            ProvideWindowInsets {
-                MainScreen()
+            val systemUiController = remember { SystemUiController(window) }
+            Providers(SysUiController provides systemUiController) {
+                // Insets for Jetpack Compose
+                ProvideWindowInsets {
+                    MainScreen(onBackPressedDispatcher)
+                }
             }
         }
     }
 }
 
 @Composable
-fun MainScreen() {
-    FizzScaffold {
-        var splashShown by remember { mutableStateOf(SplashState.Shown) }
-        val transition = transition(splashTransitionDefinition, splashShown)
-        Box {
-            LandingScreen(
-                modifier = Modifier.drawOpacity(transition[splashAlphaKey]),
-                onTimeout = { splashShown = SplashState.Completed }
-            )
-            MainContent(
-                modifier = Modifier.drawOpacity(transition[contentAlphaKey])
-            )
+fun MainScreen(backDispatcher: OnBackPressedDispatcher) {
+    FizzTheme {
+        JetsnackSurface {
+            var splashShown by remember { mutableStateOf(SplashState.Shown) }
+            val transition = transition(splashTransitionDefinition, splashShown)
+            Box {
+                LandingScreen(
+                    modifier = Modifier.drawOpacity(transition[splashAlphaKey]),
+                    onTimeout = { splashShown = SplashState.Completed }
+                )
+                MainContent(
+                    modifier = Modifier.drawOpacity(transition[contentAlphaKey])
+                )
+            }
         }
     }
 }

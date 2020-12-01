@@ -15,10 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.fizz.compose.R
-import com.fizz.compose.ui.theme.BlueTheme
+import com.fizz.compose.ui.components.FizzBottomNavigation
+import com.fizz.compose.ui.components.FizzScaffold
+import com.fizz.compose.ui.theme.FizzTheme
 import dev.chrisbanes.accompanist.insets.navigationBarsHeight
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
@@ -26,39 +27,38 @@ import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 fun MainContent(
     modifier: Modifier = Modifier
 ) {
-    BlueTheme {
-        val (selectedTab, setSelectedTab) = remember { mutableStateOf(MainTabs.HOME) }
-        val tabs = MainTabs.values()
-        Scaffold(
-            modifier = modifier,
-            backgroundColor = MaterialTheme.colors.primarySurface,
-            bottomBar = {
-                BottomNavigation(
-                    Modifier.navigationBarsHeight(additional = 56.dp)
-                ) {
-                    tabs.forEach { tab ->
-                        BottomNavigationItem(
-                            icon = { Icon(vectorResource(tab.icon)) },
-                            label = { Text(stringResource(tab.title).toUpperCase()) },
-                            selected = tab == selectedTab,
-                            onClick = { setSelectedTab(tab) },
-                            alwaysShowLabels = false,
-                            selectedContentColor = MaterialTheme.colors.secondary,
-                            unselectedContentColor = AmbientContentColor.current,
-                            modifier = Modifier.navigationBarsPadding()
-                        )
-                    }
+    val (selectedTab, setSelectedTab) = remember { mutableStateOf(MainTabs.HOME) }
+    val tabs = MainTabs.values()
+    FizzScaffold(
+        modifier = modifier,
+        bottomBar = {
+            FizzBottomNavigation(
+                Modifier.navigationBarsHeight(additional = 56.dp),
+                backgroundColor = FizzTheme.colors.uiBackground,
+                contentColor = FizzTheme.colors.textSecondary,
+            ) {
+                tabs.forEach { tab ->
+                    BottomNavigationItem(
+                        icon = { Icon(vectorResource(tab.icon)) },
+                        label = { Text(stringResource(tab.title).toUpperCase()) },
+                        selected = tab == selectedTab,
+                        onClick = { setSelectedTab(tab) },
+                        alwaysShowLabels = false,
+                        selectedContentColor = MaterialTheme.colors.secondary,
+                        unselectedContentColor = AmbientContentColor.current,
+                        modifier = Modifier.navigationBarsPadding()
+                    )
                 }
             }
-        ) { innerPadding ->
-            val modifier = Modifier.padding(innerPadding)
-            when (selectedTab) {
-                MainTabs.HOME -> MainHome(modifier)
-                MainTabs.FIND_HOUSE -> MainFindHouse(modifier)
-                MainTabs.RECOMMEND -> MainRecommend(modifier)
-                MainTabs.MESSAGE -> MainMessage(modifier)
-                MainTabs.PROFILE -> MainProfile(modifier)
-            }
+        }
+    ) { innerPadding ->
+        val modifier = Modifier.padding(innerPadding)
+        when (selectedTab) {
+            MainTabs.HOME -> MainHome(modifier)
+            MainTabs.FIND_HOUSE -> MainFindHouse(modifier)
+            MainTabs.RECOMMEND -> MainRecommend(modifier)
+            MainTabs.MESSAGE -> MainMessage(modifier)
+            MainTabs.PROFILE -> MainProfile(modifier)
         }
     }
 }
