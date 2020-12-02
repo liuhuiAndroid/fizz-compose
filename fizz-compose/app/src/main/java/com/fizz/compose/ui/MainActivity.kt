@@ -6,12 +6,12 @@ import androidx.activity.OnBackPressedDispatcher
 import androidx.compose.animation.core.*
 import androidx.compose.animation.transition
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawOpacity
 import androidx.compose.ui.platform.setContent
 import androidx.core.view.WindowCompat
-import com.fizz.compose.ui.components.JetsnackSurface
 import com.fizz.compose.ui.main.MainContent
 import com.fizz.compose.ui.theme.FizzTheme
 import com.fizz.compose.ui.utils.SysUiController
@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(backDispatcher: OnBackPressedDispatcher) {
     FizzTheme {
-        JetsnackSurface {
+        Surface {
             var splashShown by remember { mutableStateOf(SplashState.Shown) }
             val transition = transition(splashTransitionDefinition, splashShown)
             Box {

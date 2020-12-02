@@ -17,9 +17,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.fizz.compose.R
-import com.fizz.compose.ui.components.FizzBottomNavigation
-import com.fizz.compose.ui.components.FizzScaffold
-import com.fizz.compose.ui.theme.FizzTheme
+import com.fizz.compose.ui.components.FizzAppBar
+import com.fizz.compose.ui.components.ScaleIcon
 import dev.chrisbanes.accompanist.insets.navigationBarsHeight
 import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
@@ -29,23 +28,25 @@ fun MainContent(
 ) {
     val (selectedTab, setSelectedTab) = remember { mutableStateOf(MainTabs.HOME) }
     val tabs = MainTabs.values()
-    FizzScaffold(
+    Scaffold(
         modifier = modifier,
         bottomBar = {
-            FizzBottomNavigation(
-                Modifier.navigationBarsHeight(additional = 56.dp),
-                backgroundColor = FizzTheme.colors.uiBackground,
-                contentColor = FizzTheme.colors.textSecondary,
+            BottomNavigation(
+                Modifier.navigationBarsHeight(additional = 56.dp)
             ) {
                 tabs.forEach { tab ->
                     BottomNavigationItem(
-                        icon = { Icon(vectorResource(tab.icon)) },
+                        icon = {
+                            ScaleIcon(
+                                tab == selectedTab,
+                                vectorResource(tab.icon),
+                                1.1f,
+                                800
+                            )
+                        },
                         label = { Text(stringResource(tab.title).toUpperCase()) },
                         selected = tab == selectedTab,
                         onClick = { setSelectedTab(tab) },
-                        alwaysShowLabels = false,
-                        selectedContentColor = MaterialTheme.colors.secondary,
-                        unselectedContentColor = AmbientContentColor.current,
                         modifier = Modifier.navigationBarsPadding()
                     )
                 }
@@ -72,25 +73,4 @@ private enum class MainTabs(
     RECOMMEND(R.string.main_recommend, R.drawable.ic_main_recommend),
     MESSAGE(R.string.main_message, R.drawable.ic_main_message),
     PROFILE(R.string.main_profile, R.drawable.ic_main_profile)
-}
-
-@Composable
-fun MainAppBar() {
-    TopAppBar(
-        elevation = 0.dp,
-        modifier = Modifier.preferredHeight(80.dp)
-    ) {
-        Image(
-            modifier = Modifier
-                .padding(6.dp)
-                .align(Alignment.CenterVertically),
-            asset = vectorResource(id = R.drawable.ic_lockup_white)
-        )
-        IconButton(
-            modifier = Modifier.align(Alignment.CenterVertically),
-            onClick = { /* todo */ }
-        ) {
-            Icon(Icons.Filled.AccountCircle)
-        }
-    }
 }

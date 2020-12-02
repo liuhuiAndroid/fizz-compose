@@ -1,10 +1,19 @@
 package com.fizz.compose.ui.theme
 
+import androidx.compose.material.AmbientElevationOverlay
 import androidx.compose.material.Colors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.unit.Dp
 
+val orange200 = Color(0xFFff7961)
+val orange500 = Color(0xFFf44336)
+val orange700 = Color(0xFFba000d)
+
+val teal200 = Color(0xff80deea)
+
+const val AlphaNearOpaque = 0.95f
 
 val Shadow11 = Color(0xff001787)
 val Shadow10 = Color(0xff00119e)
@@ -74,4 +83,41 @@ val FunctionalGreen = Color(0xff52c41a)
 val FunctionalGrey = Color(0xfff6f6f6)
 val FunctionalDarkGrey = Color(0xff2e2e2e)
 
-const val AlphaNearOpaque = 0.95f
+val colorBrand = Shadow5
+val colorUiBackground = Neutral0
+val colorUiBorder = Neutral4
+val colorUiFloated = FunctionalGrey
+val colorTextSecondary = Neutral7
+val colorTextHelp = Neutral6
+val colorTextInteractive = Neutral0
+val colorTextLink = Ocean11
+val colorIconSecondary = Neutral7
+val colorIconInteractive = Neutral0
+val colorIconInteractiveInactive = Neutral1
+val colorError = FunctionalRed
+val colorGradient6_1 = listOf(Shadow4, Ocean3, Shadow2, Ocean3, Shadow4)
+val colorGradient6_2 = listOf(Rose4, Lavender3, Rose2, Lavender3, Rose4)
+val colorGradient3_1 = listOf(Shadow2, Ocean3, Shadow4)
+val colorGradient3_2 = listOf(Rose2, Lavender3, Rose4)
+val colorGradient2_1 = listOf(Shadow4, Shadow11)
+val colorGradient2_2 = listOf(Ocean3, Shadow3)
+
+/**
+ * Return the fully opaque color that results from compositing [onSurface] atop [surface] with the
+ * given [alpha]. Useful for situations where semi-transparent colors are undesirable.
+ */
+@Composable
+fun Colors.compositedOnSurface(alpha: Float): Color {
+    return onSurface.copy(alpha = alpha).compositeOver(surface)
+}
+
+/**
+ * Calculates the color of an elevated `surface` in dark mode. Returns `surface` in light mode.
+ */
+@Composable
+fun Colors.elevatedSurface(elevation: Dp): Color {
+    return AmbientElevationOverlay.current?.apply(
+        color = this.surface,
+        elevation = elevation
+    ) ?: this.surface
+}

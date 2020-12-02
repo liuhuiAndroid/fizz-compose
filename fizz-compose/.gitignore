@@ -7,7 +7,7 @@ captures
 /local.properties
 
 # IntelliJ .idea folder
-/.idea
+.idea/
 *.iml
 
 # General

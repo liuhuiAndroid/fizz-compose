@@ -8,4 +8,7 @@
     <string name="main_message">消息</string>
     <string name="main_profile">我的</string>
 
+    <!-- Search -->
+    <string name="search_house">查找房源</string>
+
 </resources>
