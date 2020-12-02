@@ -16,8 +16,10 @@ import com.fizz.compose.ui.main.MainContent
 import com.fizz.compose.ui.theme.FizzTheme
 import com.fizz.compose.ui.utils.SysUiController
 import com.fizz.compose.ui.utils.SystemUiController
+import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
