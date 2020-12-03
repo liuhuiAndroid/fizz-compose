@@ -43,9 +43,14 @@ object Libs {
 
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.2.0"
-        const val core = "androidx.core:core:1.5.0-alpha04"
-        const val coreKtx = "androidx.core:core-ktx:1.5.0-alpha04"
+        const val appcompatResources = "androidx.appcompat:appcompat-resources:1.2.0"
+        const val core = "androidx.core:core:1.3.2"
+        const val coreKtx = "androidx.core:core-ktx:1.3.2"
+        const val activityKtx = "androidx.activity:activity-ktx:1.1.0"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.2.5"
+        const val collectionKtx = "androidx.collection:collection-ktx:1.1.0"
         const val palette = "androidx.palette:palette:1.0.0"
+        const val material = "com.google.android.material:material:1.2.0"
 
         object Compose {
             private const val version = "1.0.0-alpha07"
@@ -70,11 +75,6 @@ object Libs {
             private const val version = "2.3.0"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
-        }
-
-        object Material {
-            private const val version = "1.2.0"
-            const val material = "com.google.android.material:material:$version"
         }
 
         object Room {

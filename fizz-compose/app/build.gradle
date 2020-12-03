@@ -51,12 +51,18 @@ android {
 dependencies {
 
     implementation Libs.Kotlin.stdlib
+    implementation Libs.Kotlin.Coroutines.core
     implementation Libs.Kotlin.Coroutines.android
 
     implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.appcompatResources
     implementation Libs.AndroidX.core
     implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.activityKtx
+    implementation Libs.AndroidX.fragmentKtx
+    implementation Libs.AndroidX.collectionKtx
     implementation Libs.AndroidX.palette
+    implementation Libs.AndroidX.material
 
     implementation Libs.AndroidX.Compose.runtime
     implementation Libs.AndroidX.Compose.foundation

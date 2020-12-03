@@ -3,6 +3,7 @@ package com.fizz.compose.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.viewModels
 import androidx.compose.animation.core.*
 import androidx.compose.animation.transition
 import androidx.compose.foundation.layout.Box
@@ -16,14 +17,14 @@ import com.fizz.compose.ui.main.MainContent
 import com.fizz.compose.ui.theme.FizzTheme
 import com.fizz.compose.utilities.SysUiController
 import com.fizz.compose.utilities.SystemUiController
+import com.fizz.compose.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val mainViewModel = viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
