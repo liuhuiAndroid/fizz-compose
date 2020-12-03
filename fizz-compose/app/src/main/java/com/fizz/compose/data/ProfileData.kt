@@ -1,9 +1,8 @@
-package com.fizz.compose.model
+package com.fizz.compose.data
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import com.fizz.compose.R
-
 
 @Immutable
 data class ProfileScreenState(

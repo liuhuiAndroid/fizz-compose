@@ -1,13 +1,19 @@
 package com.fizz.compose.viewmodels
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import com.fizz.compose.data.RoomRepository
-import com.fizz.compose.di.DefaultDispatcher
-import kotlinx.coroutines.CoroutineDispatcher
+import androidx.lifecycle.viewModelScope
+import com.fizz.compose.data.room.entity.AccountEntity
+import com.fizz.compose.repository.AccountRepository
+import kotlinx.coroutines.launch
 
-class MainViewModel constructor(
-    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
-    private val roomRepository: RoomRepository
+class MainViewModel @ViewModelInject constructor(
+    private val accountRepository: AccountRepository
 ) : ViewModel() {
 
+    fun insert() {
+        viewModelScope.launch {
+            accountRepository.insert(AccountEntity("1", ""))
+        }
+    }
 }

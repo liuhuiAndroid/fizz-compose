@@ -18,6 +18,9 @@ import com.fizz.compose.utilities.SysUiController
 import com.fizz.compose.utilities.SystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

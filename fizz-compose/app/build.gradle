@@ -20,10 +20,6 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
-                arguments += [
-                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true"]
             }
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -81,6 +77,12 @@ dependencies {
 
     implementation Libs.OkHttp.okhttp
     implementation Libs.OkHttp.logging
+
+    implementation Libs.Retrofit.retrofit
+    implementation Libs.Retrofit.retrofitMoshi
+
+    implementation Libs.Moshi.moshi
+    kapt Libs.Moshi.moshiKotlinCodegen
 
     implementation Libs.Accompanist.coil
     implementation Libs.Accompanist.insets

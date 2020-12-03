@@ -23,8 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.fizz.compose.model.ProfileScreenState
-import com.fizz.compose.model.meProfile
+import com.fizz.compose.data.ProfileScreenState
+import com.fizz.compose.data.meProfile
 import com.fizz.compose.ui.components.FizzAppBar
 import com.fizz.compose.ui.theme.FizzTheme
 import com.fizz.compose.R

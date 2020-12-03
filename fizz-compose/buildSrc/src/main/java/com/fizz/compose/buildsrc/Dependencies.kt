@@ -24,9 +24,21 @@ object Libs {
     }
 
     object OkHttp {
-        private const val version = "4.7.2"
+        private const val version = "4.9.0"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val logging = "com.squareup.okhttp3:logging-interceptor:$version"
+    }
+
+    object Retrofit {
+        private const val version = "2.9.0"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+        const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+    }
+
+    object Moshi {
+        private const val version = "1.11.0"
+        const val moshi = "com.squareup.moshi:moshi-kotlin:$version"
+        const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
     }
 
     object AndroidX {
