@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.drawOpacity
 import androidx.compose.ui.platform.setContent
 import androidx.core.view.WindowCompat
 import com.fizz.compose.ui.main.MainContent
+import com.fizz.compose.ui.main.OnMessageItemClicked
 import com.fizz.compose.ui.theme.FizzTheme
 import com.fizz.compose.utilities.SysUiController
 import com.fizz.compose.utilities.SystemUiController
@@ -42,7 +43,12 @@ class MainActivity : ComponentActivity() {
             Providers(SysUiController provides systemUiController) {
                 // Insets for Jetpack Compose
                 ProvideWindowInsets {
-                    MainScreen(onBackPressedDispatcher)
+                    MainScreen(
+                        onBackPressedDispatcher,
+                        onMessageItemClicked = {
+                            launchChatActivity(context = this, item = it)
+                        }
+                    )
                 }
             }
         }
@@ -50,7 +56,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(backDispatcher: OnBackPressedDispatcher) {
+fun MainScreen(
+    backDispatcher: OnBackPressedDispatcher,
+    onMessageItemClicked: OnMessageItemClicked,
+) {
     FizzTheme {
         Surface {
             var splashShown by remember { mutableStateOf(SplashState.Shown) }
@@ -61,7 +70,8 @@ fun MainScreen(backDispatcher: OnBackPressedDispatcher) {
                     onTimeout = { splashShown = SplashState.Completed }
                 )
                 MainContent(
-                    modifier = Modifier.drawOpacity(transition[contentAlphaKey])
+                    modifier = Modifier.drawOpacity(transition[contentAlphaKey]),
+                    onMessageItemClicked = onMessageItemClicked
                 )
             }
         }

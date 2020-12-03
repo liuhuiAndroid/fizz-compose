@@ -18,7 +18,8 @@ import dev.chrisbanes.accompanist.insets.navigationBarsPadding
 
 @Composable
 fun MainContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onMessageItemClicked: OnMessageItemClicked,
 ) {
     val (selectedTab, setSelectedTab) = remember { mutableStateOf(MainTabs.HOME) }
     val tabs = MainTabs.values()
@@ -52,7 +53,7 @@ fun MainContent(
             MainTabs.HOME -> MainHome(modifier)
             MainTabs.FIND_HOUSE -> MainFindHouse(modifier)
             MainTabs.RECOMMEND -> MainRecommend(modifier)
-            MainTabs.MESSAGE -> MainMessage(modifier)
+            MainTabs.MESSAGE -> MainMessage(modifier, onMessageItemClicked)
             MainTabs.PROFILE -> MainProfile(modifier)
         }
     }
