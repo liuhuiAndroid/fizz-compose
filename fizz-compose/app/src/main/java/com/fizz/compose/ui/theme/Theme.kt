@@ -4,7 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import com.fizz.compose.ui.utils.SysUiController
+import com.fizz.compose.utilities.SysUiController
 
 private val LightOrangeColorPalette = lightColors(
     primary = orange500,

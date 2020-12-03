@@ -1,4 +1,4 @@
-package com.fizz.compose.ui.utils
+package com.fizz.compose.utilities
 
 import android.os.Parcelable
 import androidx.activity.OnBackPressedCallback

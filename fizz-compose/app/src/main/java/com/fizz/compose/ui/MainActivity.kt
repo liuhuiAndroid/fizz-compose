@@ -14,8 +14,8 @@ import androidx.compose.ui.platform.setContent
 import androidx.core.view.WindowCompat
 import com.fizz.compose.ui.main.MainContent
 import com.fizz.compose.ui.theme.FizzTheme
-import com.fizz.compose.ui.utils.SysUiController
-import com.fizz.compose.ui.utils.SystemUiController
+import com.fizz.compose.utilities.SysUiController
+import com.fizz.compose.utilities.SystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 

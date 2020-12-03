@@ -1,4 +1,4 @@
-package com.fizz.compose.ui.utils
+package com.fizz.compose.utilities
 
 import android.os.Build
 import android.view.View
